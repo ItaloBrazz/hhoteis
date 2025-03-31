@@ -20,7 +20,7 @@ app.get('/cadastro', (req, res) => {
 
 // Rota para a página de login (GET)
 app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'login.html'));
 });
 
 // Rota de cadastro (POST)
