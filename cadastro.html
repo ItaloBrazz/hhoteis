@@ -65,33 +65,33 @@
     const modal = document.getElementById('successModal');
     const form = document.getElementById('registerForm');
     
-    // Mostrar modal (função separada para reuso)
+    // Mostrar modal
     function showModal() {
         modal.classList.add('show');  // Usando a classe 'show' para aplicar a animação
-        document.body.style.overflow = 'hidden'; // Impede scroll da página
+        document.body.style.overflow = 'hidden'; // Impede o scroll da página
     }
     
     // Fechar modal
     function closeModal() {
         modal.classList.remove('show');  // Remover a classe 'show' ao fechar
-        document.body.style.overflow = 'auto'; // Restaura scroll
+        document.body.style.overflow = 'auto'; // Restaura o scroll
     }
     
     // Botão de fechar
     document.getElementById('modalCloseBtn').addEventListener('click', function() {
         closeModal();
-        window.location.href = 'login.html'; // Redireciona para login após fechar o modal
+        setTimeout(() => {  // Adicionando um pequeno delay para suavizar a experiência do usuário
+            window.location.href = 'login.html'; // Redireciona para a página de login
+        }, 300); 
     });
     
     // Fechar ao clicar fora do modal
-    modal.querySelector('.modal-content').addEventListener('click', function(e) {
-        e.stopPropagation(); // Impede o evento de propagação para o modal e fechar sem querer
-    });
-
     modal.addEventListener('click', function(e) {
-        if (e.target === modal) { // Fechar o modal se o usuário clicar fora da área do conteúdo
+        if (e.target === modal) { // Fechar o modal se clicar fora
             closeModal();
-            window.location.href = 'login.html'; // Redireciona para login após fechar o modal
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 300); 
         }
     });
     
@@ -120,7 +120,7 @@
             
             if (response.ok) {
                 showModal(); 
-                form.reset();
+                form.reset(); // Reseta o formulário após exibir o modal
             } else {
                 alert(data.error || 'Erro no cadastro');
             }
