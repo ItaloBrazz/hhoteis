@@ -1,0 +1,111 @@
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    overflow: auto;
+}
+
+.modal.show {
+    display: block;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+    from {opacity: 0; transform: translateY(-50px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.check-icon {
+    display: inline-block;
+    color: #4CAF50;
+    font-size: 4.5rem;
+    margin: 0 0 1.5rem;
+    animation: checkBounce 0.8s ease;
+}
+
+@keyframes checkBounce {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-15px); }
+    50% { transform: translateY(0); }
+    75% { transform: translateY(-7px); }
+}
+
+.modal-title {
+    color: #333;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.modal-message {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+.modal-btn {
+    background-color: #58218e;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 220px;
+    margin: 0 auto;
+    display: block;
+}
+
+.modal-btn:hover {
+    background-color: #7d5ba6;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+/* Efeito de pulso mais suave */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 1.8rem;
+        margin: 15vh auto;
+        width: 95%;
+    }
+    
+    .check-icon {
+        font-size: 3.5rem;
+    }
+    
+    .modal-title {
+        font-size: 1.4rem;
+    }
+}
