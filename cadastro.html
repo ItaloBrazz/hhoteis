@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/cadastro.css"> 
+    <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="stylesheet" href="css/modal.css"> <!-- Novo arquivo CSS -->
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>HHotel - Cadastro</title>
@@ -15,7 +16,7 @@
         <div class="form-container">
             <div class="form-content">
                 <h2 class="form-title">Cadastrar-se</h2>
-                <form class="form" action="http://localhost:3000/auth/register" method="POST">
+                <form id="registerForm" class="form">
                     <label class="label-input" for="name">
                         <i class="fa-solid fa-user icon-modify"></i>
                         <input type="text" name="name" id="name" placeholder="Nome" required> 
@@ -48,5 +49,91 @@
             <img src="img/bonecocadastro.png" alt="">
         </div>
     </div>
+    
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <i class="fas fa-check-circle check-icon"></i>
+            <h2 class="modal-title">Cadastro Concluído!</h2>
+            <p class="modal-message">Seu cadastro foi realizado com sucesso. Clique no botão abaixo para ir para a página de login.</p>
+            <button class="modal-btn" id="modalCloseBtn">Ir para Login</button>
+        </div>
+    </div>
+
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('successModal');
+    const form = document.getElementById('registerForm');
+    
+    // Mostrar modal (função separada para reuso)
+    function showModal() {
+        modal.classList.add('show');  // Usando a classe 'show' para aplicar a animação
+        document.body.style.overflow = 'hidden'; // Impede scroll da página
+    }
+    
+    // Fechar modal
+    function closeModal() {
+        modal.classList.remove('show');  // Remover a classe 'show' ao fechar
+        document.body.style.overflow = 'auto'; // Restaura scroll
+    }
+    
+    // Botão de fechar
+    document.getElementById('modalCloseBtn').addEventListener('click', function() {
+        closeModal();
+        window.location.href = 'login.html'; // Redireciona para login após fechar o modal
+    });
+    
+    // Fechar ao clicar fora do modal
+    modal.querySelector('.modal-content').addEventListener('click', function(e) {
+        e.stopPropagation(); // Impede o evento de propagação para o modal e fechar sem querer
+    });
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) { // Fechar o modal se o usuário clicar fora da área do conteúdo
+            closeModal();
+            window.location.href = 'login.html'; // Redireciona para login após fechar o modal
+        }
+    });
+    
+    // Formulário
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Cadastrando...';
+        
+        try {
+            const response = await fetch('http://localhost:3000/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    password: document.getElementById('password').value
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok) {
+                showModal(); 
+                form.reset();
+            } else {
+                alert(data.error || 'Erro no cadastro');
+            }
+        } catch (error) {
+            alert('Erro ao conectar ao servidor');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'CADASTRAR-SE';
+        }
+    });
+});
+
+    </script>
+    
 </body>
 </html>
