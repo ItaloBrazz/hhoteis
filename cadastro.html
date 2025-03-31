@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/cadastro.css"> 
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>HHotel - Cadastro</title>
+</head>
+<body>
+    <div class="container">
+        <div class="logo"><a href=""><img src="img/logo.png" alt="logo"></a></div>
+        
+        <div class="form-container">
+            <div class="form-content">
+                <h2 class="form-title">Cadastrar-se</h2>
+                <form class="form" action="http://localhost:3000/auth/register" method="POST">
+                    <label class="label-input" for="name">
+                        <i class="fa-solid fa-user icon-modify"></i>
+                        <input type="text" name="name" id="name" placeholder="Nome" required> 
+                    </label>
+                    <label class="label-input" for="email">
+                        <i class="fa-solid fa-envelope icon-modify"></i>
+                        <input type="email" name="email" id="email" placeholder="E-mail" required> 
+                    </label>
+                    <label class="label-input" for="password">
+                        <i class="fa-solid fa-lock icon-modify"></i>
+                        <input type="password" name="password" id="password" placeholder="Senha" required> 
+                    </label>
+                    <button class="btn-form" type="submit">CADASTRAR-SE</button>
+                    <p class="divider">ou continue com</p>
+                    <div class="social-media">
+                        <ul class="list-social-media">
+                            <li><a href="#"><i class="fa-brands fa-google icon-social"></i></a></li>
+                            <li><a href="#"><i class="fa-brands fa-facebook icon-social"></i></a></li>
+                            <li><a href="#"><i class="fa-brands fa-apple icon-social"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="login-link">
+                        <p>Já tem uma conta? <a href="login.html">Faça login aqui</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="corner-image">
+            <img src="img/bonecocadastro.png" alt="">
+        </div>
+    </div>
+</body>
+</html>

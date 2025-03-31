@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>HHotel - Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="logo"><a href=""><img src="img/logo.png" alt="logo"></a></div>
+        
+        <div class="content first-content">
+            <div class="first-column">
+                <h2 class="title">Bem-vindo ao HHoteis!</h2>
+                <h2 class="title2">Lorem Ipsum is simply</h2>
+                <p class="description">Não tem uma conta?</p>
+                <p class="description"><a href="cadastro.html">Clique aqui</a> para se cadastrar!</p>
+            </div>
+        </div>
+
+        <div class="content third-content">
+            <div class="third-column">
+                <img src="img/boneco.png" alt="">
+            </div>
+        </div>
+
+        <div class="content second-content">
+            <div class="second-column">
+                <h2 class="title">Faça o login</h2>
+                <div class="form-container">
+                    <div class="form-content">
+                        <form id="formLogin" class="form">
+                            <label class="label-input" for="email">
+                                <i class="fa-solid fa-envelope icon-modify"></i>
+                                <input type="email" name="email" id="email" placeholder="E-mail" required>
+                            </label>
+                            <label class="label-input" for="password">
+                                <i class="fa-solid fa-lock icon-modify"></i>
+                                <input type="password" name="password" id="password" placeholder="Senha" required>
+                            </label>
+                            <button class="btn-form" type="submit">ENTRAR</button>
+                            <p class="description"><a href="cadastro.html">Registre-se aqui</a></p>
+                            <p class="divider">ou continue com</p>                          
+                            <div class="social-media">
+                                <ul class="list-social-media">
+                                    <li><a href="#"><i class="fa-brands fa-google icon-social"></i></a></li>
+                                    <li><a href="#"><i class="fa-brands fa-facebook icon-social"></i></a></li>
+                                    <li><a href="#"><i class="fa-brands fa-apple icon-social"></i></a></li>
+                                </ul>
+                            </div>
+                        </form>
+                        
+                        <script>
+                            document.getElementById('formLogin').addEventListener('submit', async (e) => {
+                                e.preventDefault();
+                                
+                                const email = document.getElementById('email').value;
+                                const password = document.getElementById('password').value;
+                        
+                                try {
+                                    const response = await fetch('http://localhost:3000/auth/login', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/x-www-form-urlencoded',
+                                        },
+                                        body: new URLSearchParams({ email, password })
+                                    });
+                        
+                                    const data = await response.json();
+                                    
+                                    if (response.ok) {
+                                        window.location.href = 'dashboard.html';
+                                    } else {
+                                        alert(data.error);
+                                    }
+                                } catch (err) {
+                                    alert('Erro ao conectar ao servidor');
+                                }
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
