@@ -64,14 +64,18 @@
                                     const response = await fetch('http://localhost:3000/auth/login', {
                                         method: 'POST',
                                         headers: {
-                                            'Content-Type': 'application/x-www-form-urlencoded',
+                                            'Content-Type': 'application/json', // Alterado para JSON
                                         },
-                                        body: new URLSearchParams({ email, password })
+                                        body: JSON.stringify({ email, password }) // Enviando como JSON
                                     });
                         
                                     const data = await response.json();
                                     
                                     if (response.ok) {
+                                        // Salvar o ID do usuário no localStorage
+                                        localStorage.setItem('userId', data.user.id);
+                                        
+                                        // Redirecionar para o dashboard
                                         window.location.href = 'dashboard.html';
                                     } else {
                                         alert(data.error);

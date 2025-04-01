@@ -1,131 +1,372 @@
 /* Estilos gerais */
 body {
-    background-color: #f3f4f6;
-    font-family: sans-serif;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+header {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 100;
+}
+
+.logo-container {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.logo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Container do perfil */
+.profile-container {
+  position: relative;
+}
+
+/* Ícone do perfil */
+.profile-icon {
+  color: #7e22ce;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.profile-icon:hover {
+  color: #6b21a8;
+  transform: scale(1.1);
+}
+
+/* Card do perfil */
+.profile-card {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px); /* Aumentei a distância do ícone */
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  padding: 0.5rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+  z-index: 101;
+  margin-top: 5px; /* Espaço adicional */
+}
+
+.profile-container:hover .profile-card {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Opções do perfil */
+.profile-option {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.profile-option:hover {
+  background-color: #f3f4f6;
+}
+
+.profile-option i {
+  color: #7e22ce;
+  margin-right: 0.75rem;
+  width: 20px;
+  text-align: center;
+}
+
+.profile-option span {
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .profile-icon {
+    font-size: 2rem;
   }
   
-  /* Header */
-  header {
-    background-color: #e5e7eb;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.5rem;
+  .profile-card {
+    width: 180px;
   }
-  
-  .logo-container {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-  
-  .logo-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .login-button {
-    background-color: #7e22ce;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 9999px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* Hero Section */
-  .hero-section {
-    position: relative;
-  }
-  
-  .hero-image {
-    width: 100%;
-    height: 16rem;
-    object-fit: cover;
-  }
-  
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+}
+
+.hero-image {
+  width: 100%;
+  height: 16rem;
+  object-fit: cover;
+}
+
+.search-container {
+  position: absolute;
+  bottom: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 1200px;
+}
+
+.search-field, .date-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.5rem;
+  flex: 1;
+}
+
+.search-field span, .date-field label {
+  color: #374151;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.search-field input, .date-field input {
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.date-field label {
+  color: #4b5563;
+  font-weight: normal;
+  display: block;
+}
+
+.date-field input {
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+/* Main Content */
+main {
+  padding: 4rem 1.5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.property-card {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.property-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.property-card img {
+  width: 100%;
+  height: 12rem;
+  object-fit: cover;
+}
+
+.property-info {
+  padding: 1rem;
+}
+
+.property-location {
+  color: #6b7280;
+  font-size: 0.875rem;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.property-price {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #7e22ce;
+}
+
+.property-price span {
+  font-weight: normal;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+/* Footer */
+.footer {
+  background-color: #ffffff;
+  padding: 2rem 0;
+  margin-top: 3rem;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.footer-info img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-column h3 {
+  color: #374151;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-column a {
+  color: #6b7280;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.footer-column a:hover {
+  color: #7e22ce;
+}
+
+.footer-newsletter h3 {
+  color: #374151;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.footer-newsletter form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer-newsletter input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+}
+
+.footer-newsletter button {
+  background-color: #7e22ce;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-social a {
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.footer-social a:hover {
+  color: #7e22ce;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-bottom p {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.logout-button {
+  background-color: transparent;
+  color: #6b7280;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.logout-button:hover {
+  color: #7e22ce;
+}
+
+@media (max-width: 768px) {
   .search-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #e5e7eb;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1rem 0;
-  }
-  
-  .search-field, .date-field {
-    display: flex;
     flex-direction: column;
-    align-items: center;
-  }
-  
-  .search-field span, .date-field label {
-    color: #374151;
-    font-weight: bold;
-    margin-bottom: 0.25rem;
-  }
-  
-  .search-field input, .date-field input {
-    border: 1px solid #d1d5db;
-    border-radius: 0.25rem;
-    padding: 0.5rem 1rem;
-  }
-  
-  .date-field label {
-    color: #4b5563;
-    font-weight: normal;
-    display: block;
-  }
-  
-  .date-field input {
-    width: 100%;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-  }
-  
-  /* Main Content */
-  main {
-    padding: 2rem 1.5rem;
+    position: static;
+    transform: none;
+    margin: 1rem auto;
+    width: 90%;
   }
   
   .property-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
   }
   
-  .property-card {
-    background-color: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+  .footer-links {
+    flex-direction: column;
+    gap: 1rem;
   }
   
-  .property-card img {
-    width: 100%;
-    height: 10rem;
-    object-fit: cover;
+  .profile-icon {
+    font-size: 2rem; 
   }
-  
-  .property-info {
-    padding: 1rem;
-  }
-  
-  .property-location {
-    color: #6b7280;
-    font-size: 0.875rem;
-    display: block;
-    margin-bottom: 0.25rem;
-  }
-  
-  .property-price {
-    font-size: 1.125rem;
-    font-weight: bold;
-  }
-  
-  .property-price span {
-    font-weight: normal;
-  }
+}
+.user-greeting {
+  font-weight: bold;
+  margin-top: 10px;
+}

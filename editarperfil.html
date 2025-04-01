@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Perfil - HHoteis</title>
+  <link rel="stylesheet" href="css/editarperfil.css">
+  <script src="editarperfil.js" defer></script> 
+  <link rel="shortcut icon" href="https://s3-alpha-sig.figma.com/img/99c3/714a/5b084d7bd3c214e11238aeb0272997af?Expires=1744588800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=JOiPR4fxUf~-U9KUCCbezw3XgvW1aedOywa6neusYsKHlxB6y3JnZ78Cr4qWirARSB-FYchc2YarjW~MXbUa3St5V3QcnGhnjhbB0MG4gNaV7s4h0scT7uh6N3Jxz2~Dv8nuFyORnm6T5GXewg1wi4hqCNTzZi7lcr0lyhuAF6Wjrh~kqahc6WDKzvbyhiz~lYXX16Wo-t45ay5K1xEHAtszJFEeB3HaEeBwCpzqR0G-8CgpI3Q0KxWHJ7a0IzDElCC0Gs~DpShy~F9XAT7WhhRjZV9YQTPiWBGeDEqHgI2HDyNAMgoYqcSZImjsTP6nnXgnvaKAqSn~zWUnC5sldw__" type="image/x-icon">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img alt="Logo" src="https://s3-alpha-sig.figma.com/img/99c3/714a/5b084d7bd3c214e11238aeb0272997af?Expires=1744588800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=JOiPR4fxUf~-U9KUCCbezw3XgvW1aedOywa6neusYsKHlxB6y3JnZ78Cr4qWirARSB-FYchc2YarjW~MXbUa3St5V3QcnGhnjhbB0MG4gNaV7s4h0scT7uh6N3Jxz2~Dv8nuFyORnm6T5GXewg1wi4hqCNTzZi7lcr0lyhuAF6Wjrh~kqahc6WDKzvbyhiz~lYXX16Wo-t45ay5K1xEHAtszJFEeB3HaEeBwCpzqR0G-8CgpI3Q0KxWHJ7a0IzDElCC0Gs~DpShy~F9XAT7WhhRjZV9YQTPiWBGeDEqHgI2HDyNAMgoYqcSZImjsTP6nnXgnvaKAqSn~zWUnC5sldw__" onclick="window.location.href='dashboard.html'"/>
+    </div>
+    <i class="fas fa-user-circle profile-icon" onclick="window.location.href=''"></i>
+  </header>
+
+  <main>
+    <div class="form-container">
+      <div class="form-content">
+        <h2 class="form-title"><i class="fas fa-user-edit"></i> Editar Perfil</h2>
+        <form id="editForm" class="form">
+          <label class="label-input" for="name">
+            <i class="fa-solid fa-user icon-modify"></i>
+            <input type="text" name="name" id="name" placeholder="Nome" required> 
+          </label>
+          
+          <label class="label-input" for="email">
+            <i class="fa-solid fa-envelope icon-modify"></i>
+            <input type="email" name="email" id="email" placeholder="Email" required> 
+          </label>
+          
+          <label class="label-input" for="new-password">
+            <i class="fa-solid fa-lock icon-modify"></i>
+            <input type="password" name="new-password" id="new-password" placeholder="Nova Senha"> 
+          </label>
+          
+          <div class="form-actions">
+            <button type="button" class="btn-form btn-cancel" onclick="window.location.href='dashboard.html'">CANCELAR</button>
+            <button type="submit" class="btn-form">SALVAR ALTERAÇÕES</button>
+            <button type="button" class="btn-form btn-delete" id="deleteProfile">EXCLUIR PERFIL</button>
+          </div>
+        </form>
+
+        <div id="notification" class="notification" style="display: none;">
+          <p>As alterações foram salvas com sucesso!</p>
+        </div>
+
+        <div id="deleteConfirmation" class="confirmation" style="display: none;">
+          <p>Você tem certeza que deseja excluir seu perfil? Esta ação não pode ser desfeita.</p>
+          <a href="index.html"><button id="confirmDelete" class="btn-form">CONFIRMAR</button></a>
+          <button id="cancelDelete" class="btn-form">CANCELAR</button>
+        </div>
+        
+        <div id="deleteNotification" class="notification" style="display: none;">
+          <p>Perfil excluído com sucesso!</p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-bottom">
+      <p>&copy; 2025 HHoteis. Todos os Direitos Reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const userId = localStorage.getItem('userId'); 
+        if (userId) {
+            const response = await fetch(`http://localhost:3000/auth/user/${userId}`); 
+            if (response.ok) {
+                const user = await response.json();
+                
+                document.getElementById('name').value = user.login; 
+                document.getElementById('email').value = user.email; 
+            } else {
+                console.error('Erro ao carregar os dados do usuário:', response.statusText);
+            }
+        } else {
+            console.warn('Usuário não autenticado');
+        }
+    });
+  </script>
+</body>
+</html>

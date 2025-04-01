@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/cadastro.css">
-    <link rel="stylesheet" href="css/modal.css"> <!-- Novo arquivo CSS -->
+    <link rel="stylesheet" href="css/modal.css"> 
     <link rel="shortcut icon" href="https://s3-alpha-sig.figma.com/img/99c3/714a/5b084d7bd3c214e11238aeb0272997af?Expires=1744588800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=JOiPR4fxUf~-U9KUCCbezw3XgvW1aedOywa6neusYsKHlxB6y3JnZ78Cr4qWirARSB-FYchc2YarjW~MXbUa3St5V3QcnGhnjhbB0MG4gNaV7s4h0scT7uh6N3Jxz2~Dv8nuFyORnm6T5GXewg1wi4hqCNTzZi7lcr0lyhuAF6Wjrh~kqahc6WDKzvbyhiz~lYXX16Wo-t45ay5K1xEHAtszJFEeB3HaEeBwCpzqR0G-8CgpI3Q0KxWHJ7a0IzDElCC0Gs~DpShy~F9XAT7WhhRjZV9YQTPiWBGeDEqHgI2HDyNAMgoYqcSZImjsTP6nnXgnvaKAqSn~zWUnC5sldw__" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>HHotel - Cadastro</title>
@@ -39,7 +39,7 @@
                         </ul>
                     </div>
                     <div class="login-link">
-                        <p>Já tem uma conta? <a href="login.html">Faça login aqui</a></p>
+                        <p>Já tem uma conta? <a href="index.html">Faça login aqui</a></p>
                     </div>
                 </form>
             </div>
@@ -80,7 +80,7 @@
     // Botão de fechar
     document.getElementById('modalCloseBtn').addEventListener('click', function() {
         closeModal();
-        window.location.href = 'login.html'; // Redireciona para login após fechar o modal
+        window.location.href = 'index.html'; // Redireciona para login após fechar o modal
     });
     
     // Fechar ao clicar fora do modal
@@ -91,7 +91,7 @@
     modal.addEventListener('click', function(e) {
         if (e.target === modal) { // Fechar o modal se o usuário clicar fora da área do conteúdo
             closeModal();
-            window.location.href = 'login.html'; // Redireciona para login após fechar o modal
+            window.location.href = 'index.html'; // Redireciona para login após fechar o modal
         }
     });
     

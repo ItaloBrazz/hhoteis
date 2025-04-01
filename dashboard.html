@@ -4,8 +4,9 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>HHoteis</title>
-  <link rel="stylesheet" href="css\dashboard.css">
-  <link rel="stylesheet" href="css\footer.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="shortcut icon" href="https://s3-alpha-sig.figma.com/img/99c3/714a/5b084d7bd3c214e11238aeb0272997af?Expires=1744588800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=JOiPR4fxUf~-U9KUCCbezw3XgvW1aedOywa6neusYsKHlxB6y3JnZ78Cr4qWirARSB-FYchc2YarjW~MXbUa3St5V3QcnGhnjhbB0MG4gNaV7s4h0scT7uh6N3Jxz2~Dv8nuFyORnm6T5GXewg1wi4hqCNTzZi7lcr0lyhuAF6Wjrh~kqahc6WDKzvbyhiz~lYXX16Wo-t45ay5K1xEHAtszJFEeB3HaEeBwCpzqR0G-8CgpI3Q0KxWHJ7a0IzDElCC0Gs~DpShy~F9XAT7WhhRjZV9YQTPiWBGeDEqHgI2HDyNAMgoYqcSZImjsTP6nnXgnvaKAqSn~zWUnC5sldw__" type="image/x-icon">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
 </head>
 <body>
@@ -13,7 +14,21 @@
     <div class="logo-container">
       <img alt="Logo" src="https://s3-alpha-sig.figma.com/img/99c3/714a/5b084d7bd3c214e11238aeb0272997af?Expires=1744588800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=JOiPR4fxUf~-U9KUCCbezw3XgvW1aedOywa6neusYsKHlxB6y3JnZ78Cr4qWirARSB-FYchc2YarjW~MXbUa3St5V3QcnGhnjhbB0MG4gNaV7s4h0scT7uh6N3Jxz2~Dv8nuFyORnm6T5GXewg1wi4hqCNTzZi7lcr0lyhuAF6Wjrh~kqahc6WDKzvbyhiz~lYXX16Wo-t45ay5K1xEHAtszJFEeB3HaEeBwCpzqR0G-8CgpI3Q0KxWHJ7a0IzDElCC0Gs~DpShy~F9XAT7WhhRjZV9YQTPiWBGeDEqHgI2HDyNAMgoYqcSZImjsTP6nnXgnvaKAqSn~zWUnC5sldw__"/>
     </div>
-    <button class="login-button">Olá, bem-vindo ao HHoteis</button>
+    <div class="profile-container">
+      <i class="fas fa-user-circle profile-icon"></i>
+      <div class="profile-card">
+        <div class="profile-option">
+          <i class="fas fa-user-edit"></i>
+          <a href="editarperfil.html"><span>EDITAR PERFIL</span></a>
+        </div>
+        <div class="profile-option" onclick="window.location.href='index.html'">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>SAIR</span>
+        </div>
+      </div>
+      
+      <div id="userGreeting" class="user-greeting"></div>
+    </div>
   </header>
   
   <section class="hero-section">
@@ -68,17 +83,16 @@
       </div>
       
       <!-- Card 4 -->
-    <div class="property-card">
-        <a href="hotel.html"> <!-- Adicionado o elemento <a> -->
+      <div class="property-card">
+        <a href="hotel.html">
             <img alt="Resort in Pernambuco" src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6OTkyOTAzNDY5NTMxMTc0MjUx/original/2124efcf-2133-4df6-a3a2-4ea133735bb4.jpeg?im_w=1200"/>
         </a>
         <div class="property-info">
             <span class="property-location">PERNAMBUCO</span>
             <p class="property-price">R$ 100,00 <span>noite</span></p>
         </div>
-    </div>
+      </div>
   
-      
       <!-- Card 5 -->
       <div class="property-card">
         <img alt="Poolside view in Pernambuco" src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTM1MzY1ODIzNzU4MjQwNjMwMw==/original/643c4220-0d19-4d97-b290-29809d3a3085.jpeg?im_w=1200"/>
@@ -162,8 +176,31 @@
     </div>
     <div class="footer-bottom">
         <p>&copy; 2025 HHoteis. Todos os Direitos Reservados.</p>
-        <button class="logout-button" onclick="window.location.href='login.html'">Sair</button>
+        <button class="logout-button" onclick="window.location.href='index.html'">Sair</button>
     </div>
 </footer>
+
+<script>
+    
+    const userId = localStorage.getItem('userId');
+
+    
+    async function loadUserData() {
+        if (userId) {
+            const response = await fetch(`http://localhost:3000/auth/user/${userId}`);
+            if (response.ok) {
+                const user = await response.json();
+                document.getElementById('userGreeting').textContent = `Olá, ${user.login}`; 
+            } else {
+                console.error('Erro ao carregar os dados do usuário:', response.statusText);
+            }
+        } else {
+            console.warn('Usuário não autenticado');
+        }
+    }
+
+    
+    window.onload = loadUserData;
+</script>
 </body>
 </html>
