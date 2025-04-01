@@ -1,6 +1,6 @@
-# OBI - Versão Mobile 📱
+# HHoteis - Versão WEB 📱
 
-Bem-vindo ao projeto OBI - Versão Mobile!
+Bem-vindo ao projeto HHoteis!
 
 ## ⚙️ Tecnologias Utilizadas
 
