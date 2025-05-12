@@ -1,6 +1,6 @@
-# OBI - Versão Mobile 📱
-
-Bem-vindo ao projeto OBI - Versão Mobile!
+# HHoteis - Versão Desktop
+!
+Bem-vindo ao projeto HHoteis
 
 ## ⚙️ Tecnologias Utilizadas
 
@@ -18,7 +18,7 @@ Bem-vindo ao projeto OBI - Versão Mobile!
 
 1. **Clone o repositório:**
 ```
-git clone https://github.com/seu-usuario/OBI-APP.git
+git clone https://github.com/seu-usuario/hhoteis.git
 ```
 
 2. **Inicie o Servidor:**
